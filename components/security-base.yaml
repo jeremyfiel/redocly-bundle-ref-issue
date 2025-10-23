@@ -1,0 +1,14 @@
+﻿api_key:
+  type: "apiKey"
+  in: "header"
+  name: "x-api-key"
+CustomAuthAuthorizer:
+  type: "apiKey"
+  name: "Authorization"
+  in: "header"
+  x-amazon-apigateway-authtype: "custom"
+  x-amazon-apigateway-authorizer:
+    authorizerUri: "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-2:123456789012:function:custom-auth-authorizer/invocations"
+    authorizerResultTtlInSeconds: 0
+    identitySource: "method.request.header.Authorization"
+    type: "request"

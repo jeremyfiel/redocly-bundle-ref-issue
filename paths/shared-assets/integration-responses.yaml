@@ -1,0 +1,30 @@
+﻿default:
+  statusCode: "500"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"200":
+  statusCode: "200"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"400":
+  statusCode: "400"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"401":
+  statusCode: "401"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"403":
+  statusCode: "403"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"404":
+  statusCode: "404"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"
+"504":
+  statusCode: "504"
+"429":
+  statusCode: "429"
+  responseParameters:
+    method.response.header.Access-Control-Allow-Origin: "'*'"

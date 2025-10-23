@@ -1,0 +1,9 @@
+type: object
+properties:
+  matterList:
+    type: array
+    items:
+      $ref: ./MatterListItemWithRowVersion.yaml
+  lastRowVersion:
+    type: integer
+    format: int64

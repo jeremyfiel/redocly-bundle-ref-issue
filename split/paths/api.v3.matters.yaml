@@ -1,0 +1,129 @@
+get:
+  tags:
+    - Matters
+  summary: Get matters.
+  parameters:
+    - name: includeCustomFields
+      in: query
+      description: Null = included; True = included; False = Not included
+      schema:
+        type: string
+    - name: rowVersion
+      in: query
+      description: Lookup field
+      schema:
+        type: string
+    - name: isArchived
+      in: query
+      description: Filter value for isArchived property (default is no filter)
+      schema:
+        type: string
+    - name: maxItems
+      in: query
+      description: Amount of matters to return (max of 10000)
+      schema:
+        type: string
+    - name: isCurrent
+      in: query
+      description: Filter value for isCurrent property (default is no filter)
+      schema:
+        type: string
+    - name: Authorization
+      in: header
+      description: Auth Token
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: 200 response
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/MatterListResponseNew.yaml
+  security:
+    - CustomAuthAuthorizer: []
+    - api_key: []
+  x-amazon-apigateway-integration:
+    httpMethod: GET
+    uri: https://${stageVariables.PublicApiUrl}/api/v1/matters
+    responses:
+      '200':
+        statusCode: '200'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '400':
+        statusCode: '400'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '401':
+        statusCode: '401'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '403':
+        statusCode: '403'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '404':
+        statusCode: '404'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '429':
+        statusCode: '429'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+      '504':
+        statusCode: '504'
+      default:
+        statusCode: '500'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+    requestParameters:
+      integration.request.querystring.includeCustomFields: method.request.querystring.includeCustomFields
+      integration.request.querystring.maxItems: method.request.querystring.maxItems
+      integration.request.header.Access-Control-Allow-Origin: '''*'''
+      integration.request.header.Authorization: method.request.header.Authorization
+      integration.request.header.api-gateway-key: '''dummy-api-key-12345'''
+      integration.request.querystring.isCurrent: method.request.querystring.isCurrent
+      integration.request.querystring.isArchived: method.request.querystring.isArchived
+      integration.request.querystring.rowVersion: method.request.querystring.rowVersion
+    passthroughBehavior: when_no_match
+    type: http
+  x-leap:
+    operationId: getMatters
+    permissions:
+      - Matters
+    description: Return a list of all matters.
+options:
+  summary: this is my options summary
+  responses:
+    '200':
+      description: 200 response
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string
+        Access-Control-Allow-Methods:
+          schema:
+            type: string
+        Access-Control-Allow-Headers:
+          schema:
+            type: string
+      content: {}
+  x-amazon-apigateway-integration:
+    responses:
+      default:
+        statusCode: '200'
+        responseParameters:
+          method.response.header.Access-Control-Allow-Methods: '''GET,PUT,POST,DELETE,PATCH,OPTIONS'''
+          method.response.header.Access-Control-Allow-Headers: >-
+            'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'
+          method.response.header.Access-Control-Allow-Origin: '''*'''
+    requestTemplates:
+      application/json: '{"statusCode": 200}'
+    passthroughBehavior: when_no_match
+    type: mock

@@ -1,0 +1,59 @@
+type: object
+properties:
+  rowVersion:
+    type: integer
+    format: int64
+  matterId:
+    type: string
+    format: uuid
+  fileNumber:
+    type: string
+  firstDescription:
+    type: string
+  secondDescription:
+    type: string
+  customDescription:
+    type: string
+  matterTypeName:
+    type: string
+  matterTypeId:
+    type: string
+  matterStatus:
+    type: string
+  isCurrent:
+    type: boolean
+  state:
+    type: string
+  responsibleStaffId:
+    type: string
+    format: uuid
+  creditStaffId:
+    type: string
+    format: uuid
+  actingStaffId:
+    type: string
+    format: uuid
+  assistingStaffId:
+    type: string
+    format: uuid
+  isArchived:
+    type: boolean
+  deleted:
+    type: boolean
+  version:
+    type: integer
+    format: int32
+  instructionDate:
+    type: string
+    format: date-time
+  billingMode:
+    type: integer
+    format: int32
+  archiveDate:
+    type: string
+    format: date-time
+  isMatterAccessible:
+    type: boolean
+  matterFileName:
+    type: string
+additionalProperties: false

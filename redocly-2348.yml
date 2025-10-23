@@ -1,0 +1,13 @@
+openapi: 3.0.2
+info:
+  title: "APIGateway"
+  version: "v1"
+servers:
+- url: "https://au-api.example.com"
+paths:
+  $ref: paths/paths-base.yaml
+components:
+  schemas:
+    $ref: components/models-base.yaml
+  securitySchemes:
+    $ref: components/security-base.yaml

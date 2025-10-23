@@ -1,0 +1,56 @@
+﻿get:
+  tags:
+  - Card
+  summary: "Gets a list of cards for a client.\r\nThe result only contains cards whose version is greater than lastRowVer."
+  parameters:
+  - name: "Authorization"
+    in: "header"
+    description: "Auth Token"
+    required: true
+    schema:
+      type: "string"
+  - name: "lastRowVer"
+    in: "query"
+    description: "The last row version of the cards to return"
+    schema:
+      type: "integer"
+      format: "int64"
+      default: 0
+  - name: "includes"
+    in: "query"
+    description: "A comma-separated list of properties to include in the response."
+    schema:
+      type: "string"
+  responses:
+    "200":
+      description: "200 response"
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: "string"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/models/CardListJson.yaml
+    $ref: ../shared-assets/error-responses.yaml
+  security:
+  - CustomAuthAuthorizer: []
+  - api_key: []
+  x-amazon-apigateway-integration:
+    httpMethod: "GET"
+    uri: "https://${stageVariables.ApiUrl}/api/v1/matters"
+    responses:
+      $ref: ../shared-assets/integration-responses.yaml
+    requestParameters:
+      $ref: ../shared-assets/integration-request-headers.yaml
+      integration.request.querystring.lastRowVer: "method.request.querystring.lastRowVer"
+      integration.request.querystring.includes: "method.request.querystring.includes"
+    passthroughBehavior: "when_no_match"
+    type: "http"
+  x-leap:
+    operationId: Card_GetCards
+    permissions:
+    - Cards
+    description: "Gets a list of cards for a client.\r\nThe result only contains cards whose version is greater than lastRowVer." # should match the 'summary' field above
+options:
+  $ref: ../shared-assets/options-method.yaml

@@ -1,0 +1,3 @@
+﻿integration.request.header.Access-Control-Allow-Origin: "'*'"
+integration.request.header.Authorization: "method.request.header.Authorization"
+integration.request.header.api-gateway-key: "'dummy-api-key-12345'"

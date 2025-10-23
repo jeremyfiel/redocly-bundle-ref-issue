@@ -1,0 +1,8 @@
+﻿MatterListResponseNew:
+  $ref: ../components/models/MatterListResponseNew.yaml
+MatterListItemWithRowVersion:
+  $ref: ../components/models/MatterListItemWithRowVersion.yaml
+PublicDocsErrorResponse:
+  $ref: ../components/models/PublicDocsErrorResponse.yaml
+CardListJson:
+  $ref: ../components/models/CardListJson.yaml

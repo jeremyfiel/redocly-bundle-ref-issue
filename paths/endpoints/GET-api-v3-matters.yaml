@@ -1,0 +1,73 @@
+﻿get:
+  tags:
+  - "Matters"
+  summary: "Get matters."
+  parameters:
+  - name: "includeCustomFields"
+    in: "query"
+    description: "Null = included; True = included; False = Not included"
+    schema:
+      type: "string"
+  - name: "rowVersion"
+    in: "query"
+    description: "Lookup field"
+    schema:
+      type: "string"
+  - name: "isArchived"
+    in: "query"
+    description: "Filter value for isArchived property (default is no filter)"
+    schema:
+      type: "string"
+  - name: "maxItems"
+    in: "query"
+    description: "Amount of matters to return (max of 10000)"
+    schema:
+      type: "string"
+  - name: "isCurrent"
+    in: "query"
+    description: "Filter value for isCurrent property (default is no filter)"
+    schema:
+      type: "string"
+  - name: "Authorization"
+    in: "header"
+    description: "Auth Token"
+    required: true
+    schema:
+      type: "string"
+  responses:
+    "200":
+      description: "200 response"
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: "string"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/models/MatterListResponseNew.yaml
+  security:
+  - CustomAuthAuthorizer: []
+  - api_key: []
+  x-amazon-apigateway-integration:
+    httpMethod: "GET"
+    uri: "https://${stageVariables.PublicApiUrl}/api/v1/matters"
+    responses:
+      $ref: ../shared-assets/integration-responses.yaml
+    requestParameters:
+      integration.request.querystring.includeCustomFields: "method.request.querystring.includeCustomFields"
+      integration.request.querystring.maxItems: "method.request.querystring.maxItems"
+      integration.request.header.Access-Control-Allow-Origin: "'*'"
+      integration.request.header.Authorization: "method.request.header.Authorization"
+      integration.request.header.api-gateway-key: "'dummy-api-key-12345'"
+      integration.request.querystring.isCurrent: "method.request.querystring.isCurrent"
+      integration.request.querystring.isArchived: "method.request.querystring.isArchived"
+      integration.request.querystring.rowVersion: "method.request.querystring.rowVersion"
+    passthroughBehavior: "when_no_match"
+    type: "http"
+  x-leap:
+    operationId: "getMatters"
+    permissions:
+    - "Matters"
+    description: "Return a list of all matters."
+options:
+  $ref: ../shared-assets/options-method.yaml

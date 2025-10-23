@@ -1,0 +1,4 @@
+﻿/api/v1/cards:
+  $ref: ../paths/endpoints/GET-api-v1-cards.yaml
+/api/v3/matters:
+  $ref: ../paths/endpoints/GET-api-v3-matters.yaml
